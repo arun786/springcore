@@ -1,0 +1,19 @@
+package com.arun.competition;
+
+public class Juggler implements Performer {
+	int beanbags = 3;
+
+	public Juggler(int beanbags) {
+		super();
+		this.beanbags = beanbags;
+	}
+
+	public Juggler() {
+		super();
+	}
+
+	public void perform() {
+		System.out.println("Juggling " + beanbags + " bean bags");
+	}
+
+}

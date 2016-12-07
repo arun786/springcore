@@ -1,0 +1,19 @@
+package com.arun.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.arun.competition.Juggler;
+import com.arun.competition.Performer;
+
+public class CompetionMain {
+	public static void main(String[] args) {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
+		Performer perform = ctx.getBean("duke",Juggler.class);
+		perform.perform();
+		
+		
+		perform = ctx.getBean("dukeExpert", Juggler.class);
+		perform.perform();
+	}
+}

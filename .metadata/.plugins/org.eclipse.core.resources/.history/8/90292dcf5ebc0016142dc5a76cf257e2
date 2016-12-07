@@ -1,0 +1,11 @@
+package com.arun.competition;
+
+public class Juggler implements Performer {
+	int beanbags = 3;
+
+	public void perform() {
+		// TODO Auto-generated method stub
+		System.out.println("Juggling " + beanbags + " bean bags");
+	}
+
+}

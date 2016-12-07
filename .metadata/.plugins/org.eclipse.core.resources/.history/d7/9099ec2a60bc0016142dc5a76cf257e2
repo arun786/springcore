@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- spring creates an object using bean element -->
+	<bean id="duke" class="com.arun.competition.Juggler"></bean>
+	
+	<!-- injecting using constructor, constructor injections -->
+	<bean id="dukeExpert" class="com.arun.competition.Juggler">
+		<constructor-arg value="10"></constructor-arg>
+	</bean>
+	
+	<!-- injecting using setters, setter injection -->
+	<bean id="setterDuke" class="com.arun.competition.Juggler">
+		<property name="beanbags"></property>
+	</bean>
+
+</beans>
