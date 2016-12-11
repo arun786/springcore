@@ -26,9 +26,18 @@ public class Main {
 		// to retrieve the value from Database when we pass the Id
 		System.out.println(dao.getProduct(prod));
 
+		System.out.println("--------------------------------------------");
 		// To retrieve all the records from database
 		List<Product> lst = dao.getProducts();
 		for (Product p : lst) {
+			System.out.println(p);
+		}
+		
+		System.out.println("--------------------------------------------");
+		//to retrieve data using between clause
+		
+		List<Product> lstProd = dao.getProductsInBetween("P235", "P240");
+		for(Product p : lstProd){
 			System.out.println(p);
 		}
 	}

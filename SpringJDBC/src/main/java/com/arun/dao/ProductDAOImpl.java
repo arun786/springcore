@@ -20,6 +20,7 @@ public class ProductDAOImpl implements ProductDAO {
 	private final String UPDATE_SQL = "update product set name = ?,description = ?, price = ? where id = ? ";
 	private final String GET_SQL = "select id,name,description,price from product where id=?";
 	private final String GET_ALL_SQL = "select id, name, description, price from product";
+	private final String GET_BETWEEN_SQL = "select id, name , description, price from product where id between ? and ?";
 
 	public ProductDAOImpl(DataSource ds) {
 		jdbcTemplate = new JdbcTemplate(ds);
@@ -43,6 +44,12 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public List<Product> getProducts() {
 		List<Product> results = jdbcTemplate.query(GET_ALL_SQL, new ProductMapper());
+		return results;
+	}
+
+	public List<Product> getProductsInBetween(String startId, String endId) {
+		List<Product> results = jdbcTemplate.query(GET_BETWEEN_SQL, new Object[] { startId, endId },
+				new ProductMapper());
 		return results;
 	}
 
