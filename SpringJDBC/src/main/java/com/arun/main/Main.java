@@ -1,6 +1,7 @@
 package com.arun.main;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,14 +14,23 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
-		ProductDAO dao = ctx.getBean("dao",ProductDAOImpl.class);
+		ProductDAO dao = ctx.getBean("dao", ProductDAOImpl.class);
 		Product prod = new Product();
-		prod.setId("P285");
-		prod.setName("Wipes");
-		prod.setDescription("Used for Baby");
-		prod.setPrice(new BigDecimal("45"));
-		dao.create(prod);
-		System.out.println("Insertion successful");
+		prod.setId("P286");
+		prod.setName("Wipes/Soap");
+		prod.setDescription("Used for Baby/Kid");
+		prod.setPrice(new BigDecimal("50"));
+		dao.insertOrUpdateProduct(prod);
+		System.out.println("Insertion/updation successful");
+
+		// to retrieve the value from Database when we pass the Id
+		System.out.println(dao.getProduct(prod));
+
+		// To retrieve all the records from database
+		List<Product> lst = dao.getProducts();
+		for (Product p : lst) {
+			System.out.println(p);
+		}
 	}
 
 }

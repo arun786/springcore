@@ -1,9 +1,13 @@
 package com.arun.dao;
 
+import java.util.List;
+
 import com.arun.bean.Product;
 
 public interface ProductDAO {
 
-	public void create(Product product);
+	public void insertOrUpdateProduct(Product product);
+	public Product getProduct(Product product);
+	public List<Product> getProducts();
 
 }
