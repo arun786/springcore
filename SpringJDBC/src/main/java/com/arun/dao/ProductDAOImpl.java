@@ -9,6 +9,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.arun.bean.Product;
 
@@ -21,9 +24,13 @@ public class ProductDAOImpl implements ProductDAO {
 	private final String GET_SQL = "select id,name,description,price from product where id=?";
 	private final String GET_ALL_SQL = "select id, name, description, price from product";
 	private final String GET_BETWEEN_SQL = "select id, name , description, price from product where id between ? and ?";
+	private NamedParameterJdbcTemplate namedParameterJDBCTemplate;
+	private final String INSERT_SQL_NAMED = "insert into product (id, name, description,price) values (:id,:name,:description,:price)";
+	private final String UPDATE_SQL_NAMED = "update product set name = :name,description = :description, price = :price where id = :id ";
 
 	public ProductDAOImpl(DataSource ds) {
 		jdbcTemplate = new JdbcTemplate(ds);
+		namedParameterJDBCTemplate = new NamedParameterJdbcTemplate(ds);
 	}
 
 	public void insertOrUpdateProduct(Product product) {
@@ -63,6 +70,18 @@ public class ProductDAOImpl implements ProductDAO {
 			prod.setPrice(rs.getBigDecimal(4));
 			return prod;
 		}
+	}
+
+	public void InsertOrUpdateProductUsingNamedParameter(Product product) {
+		SqlParameterSource sqlParameterSource = new MapSqlParameterSource("id", product.getId())
+				.addValue("name", product.getName()).addValue("description", product.getDescription())
+				.addValue("price", product.getPrice());
+		int result = 0;
+		result = namedParameterJDBCTemplate.update(UPDATE_SQL_NAMED, sqlParameterSource);
+		if (result == 0) {
+			result = namedParameterJDBCTemplate.update(INSERT_SQL_NAMED, sqlParameterSource);
+		}
+
 	}
 
 }

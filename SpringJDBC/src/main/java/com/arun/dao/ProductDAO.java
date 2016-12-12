@@ -10,5 +10,6 @@ public interface ProductDAO {
 	public Product getProduct(Product product);
 	public List<Product> getProducts();
 	public List<Product> getProductsInBetween(String startId, String endId);
+	public void InsertOrUpdateProductUsingNamedParameter(Product product);
 
 }
