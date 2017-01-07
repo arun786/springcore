@@ -10,11 +10,16 @@ public class Client {
 		Performer perform = ctx.getBean("Duke", Juggler.class);
 		perform.perform();
 		
-		//Setter Injection
-		
+		//Setter Injection with String		
 		AdriotJuggler adperform = ctx.getBean("AdriotDuke",AdriotJuggler.class);
 		adperform.setBeanBags("10");
 		adperform.perform();
+		
+		//Setter Injection with Object
+		PoeticJuggler poeticJuggler = ctx.getBean("RabindraJuggler", PoeticJuggler.class);
+		poeticJuggler.perform();
+		
+		
 	}
 
 }
