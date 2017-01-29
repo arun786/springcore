@@ -12,6 +12,9 @@ public class Main {
 		
 		perform = ctx.getBean("dukeInstrumentalist", DukeInstrumentalist.class);
 		perform.performs();
+		
+		perform = ctx.getBean("bonJoviSinger", SingerInstrumentalist.class);
+		perform.performs();
 	}
 
 }

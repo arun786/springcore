@@ -7,6 +7,11 @@
 	<bean id="instrument" class="com.arun.springidol.Saxophone"></bean>
 	<bean id="dukeInstrument" class="com.arun.springidol.Guitar"></bean>
 
+	<!-- for Autowiring using byType -->
+	<bean id="bonJovi" class="com.arun.springidol.SingerOnlyOneOfAkindForByType" primary="true"/>
+
+	<bean id="anotherBonJovi" class="com.arun.springidol.SingerofTypeByTpe" primary="false"/>
+
 	<!-- The bean with id is autowired in the instrumentalist as the autowire 
 		is set as byName, conditions to be taken care for byName autowring, the name 
 		of the bean in xml file will be the same as the bean -->
@@ -15,5 +20,10 @@
 
 	<bean id="dukeInstrumentalist" class="com.arun.springidol.DukeInstrumentalist"
 		autowire="byName"></bean>
+
+	<!-- A Single bean of that type should be present for byType Autowring -->
+	<bean id="bonJoviSinger" class="com.arun.springidol.SingerInstrumentalist"
+		autowire="byType" />
 		
+
 </beans>

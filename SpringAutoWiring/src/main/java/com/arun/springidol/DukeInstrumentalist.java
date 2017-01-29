@@ -9,7 +9,7 @@ public class DukeInstrumentalist implements Performer {
 
 	public void performs() {
 		dukeInstrument.play();
-		System.out.println("Duke performing");
+		System.out.println("Duke performing autowring byName");
 	}
 
 	public Instrument getDukeInstrument() {
