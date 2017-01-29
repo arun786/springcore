@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="instrument" class="com.arun.springidol.Saxophone"></bean>
+	<bean id="dukeInstrument" class="com.arun.springidol.Guitar"></bean>
+
+	<!-- The bean with id is autowired in the instrumentalist as the autowire 
+		is set as byName, conditions to be taken care for byName autowring, the name 
+		of the bean in xml file will be the same as the bean -->
+	<bean id="instrumentalist" class="com.arun.springidol.Instrumentalist"
+		autowire="byName" />
+
+	<bean id="dukeInstrumentalist" class="com.arun.springidol.DukeInstrumentalist"
+		autowire="byName"></bean>
+		
+</beans>
